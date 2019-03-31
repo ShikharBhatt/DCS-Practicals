@@ -7,7 +7,6 @@ public class Bully{
 	static boolean state[] = new boolean[5];
 	public static int coordinator;
 
-
 	public static void up(int i){
 		
 		if(state[i]) System.out.println("  "+(i+1) + " is already UP!");
@@ -16,34 +15,11 @@ public class Bully{
 			
 			state[i] = true;
 			System.out.println("  "+(i+1) + " is now up!");
-		/*	
-			for(int k=i;k<5;k++){
-				if(!state[k]) continue;
-				
-				else 
-				{
-					coordinator = k;	
-				}
-					
-				for(int j=k+1;j<5;j++){
-					System.out.println(" "+ (k+1) + " sent election message to "+ (j+1));
-				}
-				for(int j=4;j>k;j--){
-					if(!state[j]) System.out.println("<<-- "+(j+1) + " DID NOT respond to election message of "+ (k+1));
-					else 
-					System.out.println("<<-- "+(j+1) + " responded to election message of "+ (k+1));
-				}
-			} 
-			
-			System.out.println("\n"+(coordinator+1)+" becomes the coordinator and sent message to all");
-		*/
-			message(i);
-		}
 		
-			
+			// conducts election
+			message(i);
+		}			
 	}
-
-	
 	
 	public static void down(int i){
 		
@@ -66,28 +42,25 @@ public class Bully{
 				for(int k=i;k<5;k++){
 					if(!state[k]) continue;
 				
-					else 
-					{
-						coordinator = k;	
-					}
-					
+					else coordinator = k;	
+				
+					//loop for sending messages from a process
 					for(int j=k+1;j<5;j++){
 						System.out.println(" "+ (k+1) + " sent election message to "+ (j+1));
 					}
+					
+					//loop for receiving acknowledgement
 					for(int j=4;j>k;j--){
 						if(!state[j]) System.out.println("<<-- "+(j+1) + " DID NOT respond to election message of "+ (k+1));
 						else 
 						System.out.println("<<-- "+(j+1) + " responded to election message of "+ (k+1));
 					}
 				} 
-			
+				
+				//each process will be set as coordinator when it holds election but only the last process which held election becomes coordinator
 				System.out.println("\n"+(coordinator+1)+" became the coordinator and sent coordiantor message to all");
-			
 		}
 	}
-			
-	 
-	
 
 	public static void main(String args[]){
 	
@@ -133,7 +106,6 @@ public class Bully{
 			}
 			
 		}while(!done);
-		
 		
 	}
 }
