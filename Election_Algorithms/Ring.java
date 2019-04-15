@@ -67,7 +67,6 @@ class Ring{
 				do{
 					if(state[j]){ 
 		System.out.println((j+1)+" passes COORDINATOR Message {" +Message+" } "+"the ELECTED COORDINATOR "+(coordinator+1) +" to next process");
-						if(coordinator < j)	coordinator = j;
 					}
 				
 					j++;
